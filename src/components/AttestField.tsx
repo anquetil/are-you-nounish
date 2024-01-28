@@ -17,6 +17,7 @@ export function AttestField(){
    const { isConnected, chainId } = useAccount()
    const searchParams = useSearchParams()
    const initialRecipient = searchParams.get('recipient') ? searchParams.get('recipient') as Address : undefined
+   console.log(searchParams)
    const [recipient, setRecipient] = useState<Address | undefined>(initialRecipient)
    const contractAddress = '0x4200000000000000000000000000000000000021'
    const schema = '0xc721f4649963e3bc019336ae6d5649fb67549d5548dd0500c668a27644ff3947'
@@ -47,7 +48,7 @@ export function AttestField(){
                <div className="flex flex-row items-start gap-x-4 bg-yellow-100 p-4 pb-0 border-yellow-200 border rounded w-fit">
                   <AddressInput prefill={initialRecipient} returnAdmin={(address) => {setRecipient(address)}} />
                   <Button 
-                     style="white" 
+                     style="black" 
                      text="They're Nounish!" 
                      txnState={txnState}
                      txnHash={data}

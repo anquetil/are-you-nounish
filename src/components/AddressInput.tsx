@@ -58,6 +58,7 @@ export function AddressInput({
             type='text'
             name='newAdmin'
             id='newAdmin'
+            placeholder='Enter an address or ENS here..'
             defaultValue={prefill ?? ''}
             onChange={(e) => {
                console.log(e.target.value)
@@ -70,7 +71,7 @@ export function AddressInput({
                   setInfo(e.target.value)
                   // call back send value
                } else {
-                  setInputValue(normalize(e.target.value))
+                  setInputValue(e.target.value)
                   if (tryToResolve) {
                      setInfo('Checking ENS...')
                   } else {
