@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Are You Nounish?",
-  description: "",
+  description: "Prove it onchain",
 };
 
 export default function RootLayout({
