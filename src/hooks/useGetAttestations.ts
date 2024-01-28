@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Address } from 'viem'
+import { Address, isAddressEqual } from 'viem'
 
 export function useGetAttestations(enabled: boolean) {
    const query = gql`query Attestations($where: AttestationWhereInput) {
@@ -48,7 +48,7 @@ export function useGetAttestations(enabled: boolean) {
       recipient: attestation.recipient,
       nounish: attestation.data.endsWith("1"),
       revoked: attestation.revoked
-   }))?.filter(a => !a.revoked && a.nounish)
+   }))?.filter(a => !a.revoked && a.nounish && !isAddressEqual(a.attester, a.recipient))
 
    return {
       attestations,
