@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import React from 'react'
 import { CustomConnectButton } from "@/components/CustomConnectButton";
+import { MyLink } from "@/components/MyLink";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,11 @@ export default function RootLayout({
            <Providers>
                <div className="flex flex-row w-full justify-between mb-4">
                   <div className="text-3xl font-bold text-gray-950">Are You Nounish?</div>
-                  <CustomConnectButton />
+                  <div className="flex flex-row gap-x-4">
+                     <MyLink />
+                     <CustomConnectButton />
+                  </div>
+
                </div>
               {children}
            </Providers>

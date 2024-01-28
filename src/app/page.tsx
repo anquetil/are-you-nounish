@@ -3,6 +3,7 @@ import { CustomConnectButton } from "@/components/CustomConnectButton";
 import { AttestField } from "@/components/AttestField";
 import { Leaderboard } from "@/components/Leaderboard";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default async function Home() {
    return (

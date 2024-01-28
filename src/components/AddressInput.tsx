@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { Address, isAddress } from 'viem'
 import { normalize } from 'viem/ens'
-import { useEnsAddress } from 'wagmi'
+import { useEnsAddress, useEnsName } from 'wagmi'
 
 export function AddressInput({
    returnAdmin,
+   prefill,
 }: {
    // eslint-disable-next-line no-unused-vars
-   returnAdmin: (address: `0x${string}`) => void
+   returnAdmin: (address: `0x${string}`) => void,
+   prefill: Address | undefined
 }) {
-   const [inputValue, setInputValue] = useState<string>('')
+   const [inputValue, setInputValue] = useState<string>(prefill ?? '')
    const [info, setInfo] = useState<string>('')
 
    const tryToResolve = inputValue.includes('.eth')
@@ -19,12 +21,18 @@ export function AddressInput({
       name: tryToResolve ? inputValue : undefined, // only enable if tryToResolve is true
    })
 
+   const nameResult = useEnsName({
+      chainId: 1,
+      address: isAddress(inputValue) ? inputValue : undefined
+   })
+   console.log(inputValue, isAddress(inputValue), 'nameresult', nameResult)
+
    if (
       data &&
       data != '0x0000000000000000000000000000000000000000' &&
       info != data
    ) {
-      console.log('found data: ', data)
+      // FOUND ADDRESS FOR ENS
       returnAdmin(data)
       setInfo(data)
    } else if (
@@ -32,9 +40,14 @@ export function AddressInput({
       info != 'This ENS has no resolved address' &&
       info != data
    ) {
-      console.log('did not find data, setting info')
+      // DID NOT FIND ADDRESS FOR ENS
       setInfo('This ENS has no resolved address')
-   } else {
+   }  else if (isAddress(inputValue) && nameResult.data && info != nameResult.data) {
+      console.log('settign ENS', nameResult.data)
+      setInfo(nameResult.data)
+   }
+   
+   else {
       console.log('no state change')
    }
 
@@ -45,12 +58,14 @@ export function AddressInput({
             type='text'
             name='newAdmin'
             id='newAdmin'
+            defaultValue={prefill ?? ''}
             onChange={(e) => {
                console.log(e.target.value)
                if (e.target.value == '') {
                   setInputValue('')
                   setInfo('')
                } else if (isAddress(e.target.value)) {
+                  setInputValue(e.target.value)
                   returnAdmin(e.target.value as Address)
                   setInfo(e.target.value)
                   // call back send value
