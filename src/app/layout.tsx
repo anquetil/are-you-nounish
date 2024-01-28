@@ -20,11 +20,11 @@ export default function RootLayout({
 }>) {
   return (
      <html lang='en'>
-        <body className={` font-mono bg-yellow-300 p-12`}>
+        <body className={` font-mono bg-yellow-300 px-4 py-6 sm:p-12`}>
            <Providers>
                <div className="flex flex-row w-full justify-between mb-4">
                   <div className="text-3xl font-bold text-gray-950">Are You Nounish?</div>
-                  <div className="flex flex-row gap-x-4">
+                  <div className="flex flex-col-reverse items-end sm:items-center gap-y-2 sm:gap-y-0 sm:flex-row sm:gap-x-1 md:gap-x-4">
                      <MyLink />
                      <CustomConnectButton />
                   </div>

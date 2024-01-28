@@ -17,13 +17,13 @@ export function AllAttestations(){
          </div>
          {attestations?.map((a) => (
             <div className="flex flex-row" key={a.id}>
-               <div className="w-64 flex flex-col text-gray-950">
+               <div className="w-64 text-gray-950">
                   <ENSName address={a.attester}/>
                </div>
-               <div className="w-64 flex flex-col text-gray-950">
+               <div className="w-64 text-gray-950">
                   <ENSName address={a.recipient} />
                </div>
-               <Link target="_blank" href={getAttestationURL(a.id)} className="w-16 flex flex-col hover:underline text-gray-500">
+               <Link target="_blank" href={getAttestationURL(a.id)} className="w-16 hover:underline text-gray-500">
                   {`${a.id.substring(0,10)}`}
                </Link>
             </div>

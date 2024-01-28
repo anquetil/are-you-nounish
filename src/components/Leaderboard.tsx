@@ -20,7 +20,7 @@ export function Leaderboard(){
                <div className="font-normal w-10">{`${id + 1}.`}</div>
                <div className="w-60"><ENSName address={p[0]}/></div>
                <div className="w-20">{p[1]}</div>
-               <PlusOne recipient={p[0]} />
+               <div className="hidden sm:block"><PlusOne recipient={p[0]} /></div>
             </div>
          ))}
       </div>

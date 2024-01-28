@@ -35,7 +35,7 @@ export function MyLink(){
 
             <div
                className={`px-3 py-[6px] border rounded text-base font-medium hover:cursor-pointer ease-in-out transition-all 
-            w-fit h-fit max-h-fit bg-white hover:bg-gray-50 active:bg-gray-100 text-gray-700 border-gray-300 `}
+            w-fit h-fit min-h-0 max-h-fit bg-white hover:bg-gray-50 active:bg-gray-100 text-gray-700 border-gray-300 `}
                onClick={handleClick}
             >
                {`Share my link`}
