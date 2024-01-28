@@ -38,7 +38,7 @@ export async function generateMetadata(
 
       return {
          title: `Is ${displayAddress} Nounish?`,
-         description: `Let them known onchain!`
+         description: `Let them know onchain!`
       }
    } else {
       return {
